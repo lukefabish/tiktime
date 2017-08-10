@@ -1,0 +1,205 @@
+body {
+  font-size: 35pt;
+  font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: #2a2a2a;
+  color: #320;
+}
+
+button {
+  height: 11em;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 8em;
+
+  margin: 0 0.17em -0.25em;
+  position: relative;
+  bottom: 0.1em;
+}
+
+.meh1 {
+  font-weight: 400;
+  font-size: 0.2em;
+}
+
+label {
+  margin-top: -8px;
+  font-size: 3.5em;
+  text-align: right;
+  width: 50%;
+  display: inline-block;
+}
+
+form {
+  margin-top: 1.5em;
+}
+
+form div + div {
+  margin-top: -0.9em;
+}
+
+select {
+  padding-left: 0.1em;
+  margin-left: 0.2em;
+  background-color: #fcc;
+  border: none;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, white 50%),
+    linear-gradient(135deg, white 50%, transparent 50%);
+  background-position:
+    calc(100% - 0.5em) 0.4em,
+    calc(100% - 0.21em) 0.4em;
+  background-size:
+    0.3em 0.3em,
+    0.3em 0.3em;
+  background-repeat: no-repeat;
+
+  font-size: 2.5em;
+  font-family: 'Anonymous Pro', 'Courier New', Courier, monospace;
+  width: 2.5em;
+}
+
+/* Hide select 'down arrow' in IE */
+select::-ms-expand {
+  display: none;
+}
+
+.timerApp {
+  width: 20.5em;
+  min-height: 600px;
+  margin: auto;
+}
+
+.timerApp {
+  background-image: url('../img/timer-bg-red.png');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: #ebebeb;
+}
+
+.timerDisplay {
+  font-family: 'Anonymous Pro', 'Courier New', Courier, monospace;
+  font-size: 7em;
+  margin: 10px 15px 15px;
+}
+
+#timerButtons {
+  font-size: 0.2em;
+  margin: -0.5em auto 0;
+}
+
+button {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border: none;
+  background-color: #f99;
+  width: 48%;
+}
+
+
+button:hover {
+  background-color: #faa;
+}
+
+button:hover, select:hover {
+  cursor: pointer;
+}
+
+.buttonInner {
+  width: 100%;
+  height: 100%;
+}
+
+.left {
+  margin-right: 0.6vh;
+}
+
+.right {
+  margin-left: 0.6vh;
+}
+
+.start {
+  background: url('../img/start-button-triangle.png') no-repeat;
+  background-size: auto 80%;
+  background-position: 50%;
+}
+
+.pause {
+  background: url('../img/pause-button-bars.png') no-repeat;
+  background-size: auto 80%;
+  background-position: 50%;
+}
+
+.reset {
+  background: url('../img/reset-button-cross.png') no-repeat;
+  background-size: auto 80%;
+  background-position: 50%;
+}
+
+.timerGraph {
+  width: 100%;
+  padding: 1.1em 15px 5px 15px;
+  display: table;
+  table-layout: fixed;   
+  margin:0 0 0 -0.8em;
+}
+
+.timerGraph li {
+  position: relative;
+  display: table-cell;
+  vertical-align: bottom;
+  height: 5.8em;
+}
+  
+.graphBar {
+  max-width: 2em;
+  max-height: 5.8em;
+  margin: 0 0.5em;
+  display: block;
+  background-color: #fcc;
+  z-index: 1;
+
+  position: absolute;
+  width: 64%;
+  height: 1em;
+  bottom: 0;
+}
+
+.graphBarShadow {
+  content: '';
+  z-index: 0;
+
+  -ms-transform: skew(-10deg);
+  -webkit-transform: skew(-10deg);
+  transform: skew(-10deg); 
+  background-image: linear-gradient(
+    0deg,
+    rgba(20, 0, 200, 0.1),
+    rgba(20, 0, 200, 0.1));
+  width: 64%;
+}
+@media only screen and (min-device-width: 768px) {
+  body { font-size: 27pt; }
+  button { height: 9em; }
+}
+
+@media only screen and (min-device-width: 1024px) {
+  body { font-size: 29pt; }
+  button { height: 9em; }
+}
+
+@media only screen and (min-device-width: 1280px) {
+  body { font-size: 14pt; }
+  button { height: 5em; }
+}
