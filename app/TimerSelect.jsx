@@ -8,6 +8,7 @@ export default class TimerSelect extends React.Component {
       label: PropTypes.string.isRequired,
       updateFn: PropTypes.func.isRequired,
       time: PropTypes.number.isRequired,
+      active: PropTypes.bool.isRequired,
     };
   }
 
@@ -21,10 +22,20 @@ export default class TimerSelect extends React.Component {
   }
 
   render() {
+    const activeOpacity = 1;
+    const inactiveOpacity = 0.4;
+    const styles = {
+      opacity: this.props.active ? activeOpacity : inactiveOpacity,
+    };
     const timeValues = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
     return (
       <div>
-        <label htmlFor={this.props.label}>{ this.props.label } </label>
+        <label
+          style={styles}
+          htmlFor={this.props.label}
+        >
+          { this.props.label }
+        </label>
         <select
           id={this.props.label}
           onChange={this.handleChange}

@@ -13,6 +13,7 @@ describe('TimerForm', () => {
       restTime={5}
       updateWorkTimeFn={nullFn}
       updateRestTimeFn={nullFn}
+      timingWork={true}
     />
   );
 

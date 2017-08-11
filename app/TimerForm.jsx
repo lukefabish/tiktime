@@ -10,6 +10,7 @@ export default class TimerForm extends React.Component {
       updateRestTimeFn: PropTypes.func.isRequired,
       workTime: PropTypes.number.isRequired,
       restTime: PropTypes.number.isRequired,
+      timingWork: PropTypes.bool.isRequired,
     };
   }
 
@@ -34,11 +35,13 @@ export default class TimerForm extends React.Component {
           label="Work:"
           time={this.props.workTime}
           updateFn={this.handleWorkTimeChange}
+          active={this.props.timingWork}
         />
         <TimerSelect
           label="Rest:"
           time={this.props.restTime}
           updateFn={this.handleRestTimeChange}
+          active={!this.props.timingWork}
         />
       </form>
     );

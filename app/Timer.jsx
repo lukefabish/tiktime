@@ -166,6 +166,7 @@ export default class Timer extends React.Component {
           updateWorkTimeFn={this.updateWorkTime}
           restTime={this.state.restTime}
           updateRestTimeFn={this.updateRestTime}
+          timingWork={this.state.timingWork}
         />
         <TimerDisplay
           timerVal={this.state.timeRemaining / 1000}
