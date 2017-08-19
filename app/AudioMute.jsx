@@ -7,11 +7,12 @@ export default function AudioMute(props) {
     muteImg = 'img/speaker-no-vol.png';
   }
 
-  const defaultDimension = '3em';
+  const defaultDimension = '100%';
   const styles = {
     backgroundImage: `url('${muteImg}')`,
     backgroundColor: 'transparent',
     backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
     width: defaultDimension,
     height: defaultDimension,
   };

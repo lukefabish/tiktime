@@ -192,8 +192,10 @@ button:hover, select:hover {
 
 .audioMute {
   position: relative;
+  width: 2em;
+  height: 2em;
   top: -8.7em;
-  right: -18em;
+  right: -18.2em;
 }
 
 .audioMute img {
@@ -212,7 +214,7 @@ button:hover, select:hover {
 
 @media only screen and (min-device-width: 1024px) {
   body { font-size: 29pt; }
-  button { height: 9em; }
+  button { height: 7em; }
 }
 
 @media only screen and (min-device-width: 1280px) {
