@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TimerStore } from './TimerStore';
 import { todayStrLess, hoursMinutesStr } from './timer-util';
 
@@ -24,7 +25,7 @@ function skewCompensation(dayCount) {
   return (setSkew(skewDeg) * dayCountToHeightShadow(dayCount)) + 18;
 }
 
-export default function TimerGraph() {
+export default function TimerGraph(props) {
   const days = TimerStore.getDayStats();
   // Pad dates with empties so graph doesn't look weird.
   if (days.length < 7) {
@@ -34,6 +35,10 @@ export default function TimerGraph() {
     }
   }
   days.reverse();
+
+  const handleClick = (date, count) => {
+    props.graphClickFn(date, count)
+  }
 
   return (
     <ul className="timerGraph">
@@ -48,18 +53,25 @@ export default function TimerGraph() {
                 marginLeft: `${skewCompensation(day.count)}%`,
               }}
             />
-            <span
-              id={`graphBar${day.date}`}
-              title={hoursMinutesStr(day.count * 60)}
-              className="graphBar"
-              style={{
-                display: (day.count > 0) ? 'block' : 'none',
-                height: `${dayCountToHeight(day.count)}%`,
-              }}
-            />
+            <a href="#EditTimeWorked">
+              <span
+                id={day.date}
+                title={hoursMinutesStr(day.count * 60)}
+                className="graphBar"
+                onClick={handleClick.bind(this, day.date, day.count)}
+                style={{
+                  display: (day.count > 0) ? 'block' : 'none',
+                  height: `${dayCountToHeight(day.count)}%`,
+                }}
+              />
+            </a>
           </li>
         ))
       }
     </ul>
   );
 }
+
+TimerGraph.propTypes = {
+  graphClickFn: PropTypes.func.isRequired,
+};
