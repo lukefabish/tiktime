@@ -20,6 +20,15 @@ const TimerStore = {
     localStorage.setItem(TIMER_DATES, JSON.stringify(dates));
   },
 
+  setHoursWorked(forDate, minutesWorked) {
+    const dates = this.getDayStats();
+    for (let i = 0; i < dates.length; i += 1) {
+      if (dates[i].date === forDate) {
+        dates.count = minutesWorked;
+      }
+    }
+  },
+
   addToday(today = todayStr(), dates = this.getDayStats()) {
     dates.unshift(this.newEntry(today));
     return dates;

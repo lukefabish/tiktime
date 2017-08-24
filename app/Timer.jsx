@@ -45,10 +45,6 @@ export default class Timer extends React.Component {
     this.startTimer(this.state.workTime);
   }
 
-  setDayTimeWorked(date, minutes) {
-    console.log('set the new value');
-  }
-
   updateWorkTime(timeValue) {
     let newTimeRemaining = this.state.timeRemaining;
 
@@ -178,7 +174,7 @@ export default class Timer extends React.Component {
           toggleTimerFn={this.toggleTimer}
           resetTimerFn={this.resetTimer}
         />
-        <TimerGraph graphClickFn={this.setDayTimeWorked} />
+        <TimerGraph />
       </div>
     );
   }

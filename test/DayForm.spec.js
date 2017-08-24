@@ -10,7 +10,7 @@ describe('DayForm', () => {
     <DayForm
       workTime={5}
       day={5}
-      updateTimeWorkedFn={nullFn}
+      hideFormFn={nullFn}
     />
   );
 
@@ -31,6 +31,6 @@ describe('DayForm', () => {
   });
 
   it('displays HTML button element "Cancel"', () => {
-    expect(defaultWrapper.find('button[value="Cancel"]')).to.have.length(1);
+    expect(defaultWrapper.find('input[type="button"]')).to.have.length(1);
   });
 });

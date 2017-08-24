@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import DayForm from './DayForm';
 import { TimerStore } from './TimerStore';
 import { todayStrLess, hoursMinutesStr } from './timer-util';
 
@@ -25,53 +25,73 @@ function skewCompensation(dayCount) {
   return (setSkew(skewDeg) * dayCountToHeightShadow(dayCount)) + 18;
 }
 
-export default function TimerGraph(props) {
-  const days = TimerStore.getDayStats();
-  // Pad dates with empties so graph doesn't look weird.
-  if (days.length < 7) {
-    for (let i = days.length; i < 7; i += 1) {
-      days[i] = TimerStore.newEntry(todayStrLess(new Date(), i));
-      days[i].date += 'Padding'; // Avoid conflict with actual data
-    }
-  }
-  days.reverse();
+export default class TimerGraph extends React.Component {
 
-  const handleClick = (date, count) => {
-    props.graphClickFn(date, count)
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showDayForm: false,
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.hideDayForm = this.hideDayForm.bind(this);
   }
 
-  return (
-    <ul className="timerGraph">
-      {
-        days.map(day => (
-          <li key={day.date} >
-            <span
-              className="graphBarShadow"
-              style={{
-                display: (day.count > 0) ? 'block' : 'none',
-                height: `${dayCountToHeightShadow(day.count)}%`,
-                marginLeft: `${skewCompensation(day.count)}%`,
-              }}
-            />
-            <a href="#EditTimeWorked">
-              <span
-                id={day.date}
-                title={hoursMinutesStr(day.count * 60)}
-                className="graphBar"
-                onClick={handleClick.bind(this, day.date, day.count)}
-                style={{
-                  display: (day.count > 0) ? 'block' : 'none',
-                  height: `${dayCountToHeight(day.count)}%`,
-                }}
-              />
-            </a>
-          </li>
-        ))
+  handleClick() {
+    this.setState({ showDayForm: true });
+  }
+
+  hideDayForm() {
+    this.setState({ showDayForm: false });
+  }
+
+  render() {
+    const days = TimerStore.getDayStats();
+    // Pad dates with empties so graph doesn't look weird.
+    if (days.length < 7) {
+      for (let i = days.length; i < 7; i += 1) {
+        days[i] = TimerStore.newEntry(todayStrLess(new Date(), i));
+        days[i].date += 'Padding'; // Avoid conflict with actual data
       }
-    </ul>
-  );
-}
+    }
+    days.reverse();
 
-TimerGraph.propTypes = {
-  graphClickFn: PropTypes.func.isRequired,
-};
+    return (
+      <div>
+        { this.state.showDayForm ? <DayForm hideFormFn={this.hideDayForm} /> : null }
+        <ul className="timerGraph">
+          {
+            days.map(day => (
+              <li key={day.date} >
+                <span
+                  className="graphBarShadow"
+                  style={{
+                    display: (day.count > 0) ? 'block' : 'none',
+                    height: `${dayCountToHeightShadow(day.count)}%`,
+                    marginLeft: `${skewCompensation(day.count)}%`,
+                  }}
+                />
+                <a
+                  tabIndex="-100"
+                  href="#EditTimeWorked"
+                  onClick={this.handleClick}
+                >
+                  <span
+                    id={day.date}
+                    title={hoursMinutesStr(day.count * 60)}
+                    className="graphBar"
+                    style={{
+                      display: (day.count > 0) ? 'block' : 'none',
+                      height: `${dayCountToHeight(day.count)}%`,
+                    }}
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    );
+  }
+}

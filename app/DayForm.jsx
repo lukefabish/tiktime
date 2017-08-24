@@ -5,7 +5,7 @@ export default class DayForm extends React.Component {
 
   static get propTypes() {
     return {
-      updateTimeWorkedFn: PropTypes.func.isRequired,
+      hideFormFn: PropTypes.func.isRequired,
       day: PropTypes.number.isRequired,
       workTime: PropTypes.number.isRequired,
     };
@@ -16,18 +16,21 @@ export default class DayForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(timeVal) {
-    this.props.updateWorkTimeFn(timeVal);
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.hideFormFn();
   }
 
   render() {
     return (
-      <form id="timeWorkedForm" onSubmit={this.handleSubmit}>
-        <label htmlFor="timeWorked">Update time worked</label>
-        <input id="timeWorked" type="text" />
-        <input type="submit" value="Update"/>
-        <button value="Cancel"/>
-      </form>
+      <div className="dayFormContainer">
+        <form id="timeWorkedForm" onSubmit={this.handleSubmit}>
+          <label htmlFor="timeWorked">Update time worked</label>
+          <input id="timeWorked" type="text" />
+          <input type="submit" value="Update" />
+          <input type="button" value="Cancel" />
+        </form>
+      </div>
     );
   }
 }
