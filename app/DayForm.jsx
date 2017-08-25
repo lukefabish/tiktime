@@ -27,8 +27,8 @@ export default class DayForm extends React.Component {
         <form id="timeWorkedForm" onSubmit={this.handleSubmit}>
           <label htmlFor="timeWorked">Update time worked</label>
           <input id="timeWorked" type="text" />
-          <input type="submit" value="Update" />
           <input type="button" value="Cancel" />
+          <input type="submit" value="Update" />
         </form>
       </div>
     );
