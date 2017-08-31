@@ -24,9 +24,11 @@ const TimerStore = {
     const dates = this.getDayStats();
     for (let i = 0; i < dates.length; i += 1) {
       if (dates[i].date === forDate) {
-        dates.count = minutesWorked;
+        dates[i].count = minutesWorked;
+        break;
       }
     }
+    localStorage.setItem(TIMER_DATES, JSON.stringify(dates));
   },
 
   addToday(today = todayStr(), dates = this.getDayStats()) {

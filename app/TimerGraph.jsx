@@ -1,29 +1,8 @@
 import React from 'react';
 import DayForm from './DayForm';
+import TimerGraphBar from './TimerGraphBar';
 import { TimerStore } from './TimerStore';
-import { todayStrLess, hoursMinutesStr } from './timer-util';
-
-function getRadians(degrees) {
-  return degrees * (Math.PI / 180);
-}
-
-function setSkew(degrees) {
-  return Math.atan(getRadians(degrees));
-}
-
-function dayCountToHeight(dayCount) {
-  const max = 12 * 60; // Max 12 hours work time / day!
-  return (dayCount / (max / 100));
-}
-
-function dayCountToHeightShadow(dayCount) {
-  return dayCountToHeight(dayCount) + (dayCountToHeight(dayCount) * 0.1);
-}
-
-function skewCompensation(dayCount) {
-  const skewDeg = 10; // Must match CSS skew deg.
-  return (setSkew(skewDeg) * dayCountToHeightShadow(dayCount)) + 18;
-}
+import { todayStrLess } from './timer-util';
 
 export default class TimerGraph extends React.Component {
 
@@ -32,18 +11,28 @@ export default class TimerGraph extends React.Component {
 
     this.state = {
       showDayForm: false,
+      clickDay: undefined,
+      clickTimeWorked: undefined,
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.hideDayForm = this.hideDayForm.bind(this);
   }
 
-  handleClick() {
-    this.setState({ showDayForm: true });
+  handleClick(dayDate, dayCount) {
+    this.setState({
+      showDayForm: true,
+      clickDay: dayDate,
+      clickTime: dayCount,
+    });
   }
 
   hideDayForm() {
-    this.setState({ showDayForm: false });
+    this.setState({
+      showDayForm: false,
+      clickDay: undefined,
+      clickTime: undefined,
+    });
   }
 
   render() {
@@ -59,35 +48,24 @@ export default class TimerGraph extends React.Component {
 
     return (
       <div>
-        { this.state.showDayForm ? <DayForm hideFormFn={this.hideDayForm} /> : null }
+        {
+          this.state.showDayForm ?
+            <DayForm
+              day={this.state.clickDay}
+              workTime={this.state.clickTime}
+              hideFormFn={this.hideDayForm}
+            />
+          : null
+        }
         <ul className="timerGraph">
           {
             days.map(day => (
-              <li key={day.date} >
-                <span
-                  className="graphBarShadow"
-                  style={{
-                    display: (day.count > 0) ? 'block' : 'none',
-                    height: `${dayCountToHeightShadow(day.count)}%`,
-                    marginLeft: `${skewCompensation(day.count)}%`,
-                  }}
-                />
-                <a
-                  tabIndex="-100"
-                  href="#EditTimeWorked"
-                  onClick={this.handleClick}
-                >
-                  <span
-                    id={day.date}
-                    title={hoursMinutesStr(day.count * 60)}
-                    className="graphBar"
-                    style={{
-                      display: (day.count > 0) ? 'block' : 'none',
-                      height: `${dayCountToHeight(day.count)}%`,
-                    }}
-                  />
-                </a>
-              </li>
+              <TimerGraphBar
+                key={day.date}
+                dayDate={day.date}
+                dayCount={day.count}
+                clickFn={this.handleClick}
+              />
             ))
           }
         </ul>

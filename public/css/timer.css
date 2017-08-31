@@ -217,18 +217,24 @@ button:hover, select:hover {
   position: fixed;
   background-color: #eee;
   padding: 3em;
+  z-index: 2;
 
   animation-name: dayForm;
   animation-duration: 0.5s;
 }
 
-#timeWorkedForm input[type="text"] {
+#timeWorkedForm input[type="number"] {
   display: block;
 }
 
 #timeWorkedForm label {
   width: 100%;
   text-align: left;
+}
+
+#validationErr {
+  color: red;
+  font-size: 2em;
 }
 
 @media only screen and (min-device-width: 768px) {
@@ -243,5 +249,5 @@ button:hover, select:hover {
 
 @media only screen and (min-device-width: 1280px) {
   body { font-size: 14pt; }
-  button { height: 5em; }
+  button { height: 4.7em; }
 }

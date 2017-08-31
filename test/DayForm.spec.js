@@ -18,8 +18,8 @@ describe('DayForm', () => {
     expect(defaultWrapper.find('form')).to.have.length(1);
   });
 
-  it('displays HTML input text element', () => {
-    expect(defaultWrapper.find('input[type="text"]')).to.have.length(1);
+  it('displays HTML input number element', () => {
+    expect(defaultWrapper.find('input[type="number"]')).to.have.length(1);
   });
 
   it('displays HTML label element', () => {
