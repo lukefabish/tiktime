@@ -65,7 +65,7 @@ export default class TimerGraphBar extends React.Component {
         >
           <span
             id={this.props.dayDate}
-            title={hoursMinutesStr(this.props.dayDate * 60)}
+            title={hoursMinutesStr(this.props.dayCount * 60)}
             className="graphBar"
             style={{
               display: (this.props.dayCount > 0) ? 'block' : 'none',
