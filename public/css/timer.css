@@ -97,7 +97,7 @@ select::-ms-expand {
   margin: -0.5em auto 0;
 }
 
-button {
+button, input[type="submit"], input[type="button"] {
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
@@ -235,6 +235,17 @@ button:hover, select:hover {
 #validationErr {
   color: red;
   font-size: 2em;
+}
+
+#timeWorkedForm input {
+  font-size: 2em;
+  width: 100%;
+}
+
+#timeWorkedForm input[type="submit"], #timeWorkedForm input[type="button"] {
+  width: 5em;
+  background-color: #ccc;
+  cursor: pointer;
 }
 
 @media only screen and (min-device-width: 768px) {

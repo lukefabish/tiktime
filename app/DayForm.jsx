@@ -71,7 +71,7 @@ export default class DayForm extends React.Component {
             onChange={this.handleChange}
           />
           <input type="button" value="Cancel" onClick={this.handleCancelClick} />
-          <input type="submit" value="Update" />
+          <input className="right" type="submit" value="Update" />
         </form>
       </div>
     );
