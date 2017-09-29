@@ -9,7 +9,10 @@ export default class Timer extends React.Component {
 
   static playAudio(muted) {
     if (!muted) {
-      new Audio('audio/crash-acoustic.wav').play();
+      const a = new Audio('audio/crash-acoustic.wav');
+      // Default sound is super-loud
+      a.volume = 0.1;
+      a.play();
     }
   }
 
