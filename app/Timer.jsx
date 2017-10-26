@@ -26,7 +26,7 @@ export default class Timer extends React.Component {
       restTime: DEFAULT_REST,
       timeRemaining: DEFAULT_WORK * 60000,
       timerIntRef: undefined,
-      timing: true,
+      timing: false,
       timingWork: true,
       lastTimestamp: new Date().getTime(),
       lastTimeRecorded: -1,
@@ -42,10 +42,6 @@ export default class Timer extends React.Component {
     this.resetTimer = this.resetTimer.bind(this);
     this.endTimingPeriod = this.endTimingPeriod.bind(this);
     this.toggleAudio = this.toggleAudio.bind(this);
-  }
-
-  componentDidMount() {
-    this.startTimer(this.state.workTime);
   }
 
   updateWorkTime(timeValue) {

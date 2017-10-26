@@ -242,6 +242,12 @@ button:hover, select:hover {
   width: 100%;
 }
 
+.shepherd-button {
+  /* !important because shepherd CSS
+     rules are hyper-specific */
+  background: #e64b32 !important;
+}
+
 #timeWorkedForm input[type="submit"], #timeWorkedForm input[type="button"] {
   width: 5em;
   background-color: #ccc;
